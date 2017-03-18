@@ -1,0 +1,4 @@
+*.class
+*.js
+doc/stylesheet.css
+*.html

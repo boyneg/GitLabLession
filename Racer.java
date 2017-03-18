@@ -29,7 +29,7 @@ import javax.swing.*;
  *
  * @author Joe Finney (joe@comp.lancs.ac.uk)
  */
-public class Racer 
+public class Racer
 {
     public static final double PLAYER_SPEED = 5;
     public static final int ROAD_SEGMENT_WIDTH = 160;
@@ -43,7 +43,7 @@ public class Racer
     private RoadSegment[] road = new RoadSegment[SCREEN_HEIGHT / ROAD_SEGMENT_HEIGHT + 1];
 
     private double currentRoadX = SCREEN_WIDTH/2;
-    private double speed = 2.0;
+    private double speed = 1.0;
     private boolean playing = false;
     private int score = 0;
 
@@ -88,7 +88,7 @@ public class Racer
             // Create the initial road layout
             for (int s = road.length-1; s >= 0 ; s--)
             {
-                road[s] = nextRoadSegment(); 
+                road[s] = nextRoadSegment();
                 road[s].setYPosition(s*ROAD_SEGMENT_HEIGHT);
             }
 
@@ -158,7 +158,7 @@ public class Racer
     }
 
     /**
-     * Provides a randomly generated, thin slice of road. 
+     * Provides a randomly generated, thin slice of road.
      * This method is used periodically to create new road on the screen in front of the player's car.
      *
      * @return A new randomly generated RoadSegment
@@ -182,7 +182,7 @@ public class Racer
             {
                 double y = road[i].getYPosition();
                 road[i].remove();
-                road[i] = nextRoadSegment(); 
+                road[i] = nextRoadSegment();
                 road[i].setYPosition(y - SCREEN_HEIGHT - ROAD_SEGMENT_HEIGHT);
             }
         }
