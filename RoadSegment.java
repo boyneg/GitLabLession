@@ -3,6 +3,7 @@
  *
  * @author Joe Finney (joe@comp.lancs.ac.uk)
  */
+import java.util.Random;
 public class RoadSegment
 {
     public static String ROUGH_COLOUR = "#00FF00";
@@ -138,6 +139,22 @@ public class RoadSegment
      */
     public void move()
     {
+        /*
+        Random randroad = new Random();
+        int randSeg = randroad.nextInt(2) + 1;
+        int randDirection = randroad.nextInt(2) + 1;
+
+        if(randDirection > 1)
+        {
+            this.setXPosition(xPosition + xSpeed + randSeg);
+            this.setYPosition(yPosition + ySpeed);
+        }
+        else
+        {
+            this.setXPosition(xPosition + xSpeed - randSeg);
+            this.setYPosition(yPosition + ySpeed);
+        }
+        */
         this.setXPosition(xPosition + xSpeed);
         this.setYPosition(yPosition + ySpeed);
     }

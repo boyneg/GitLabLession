@@ -34,9 +34,9 @@ public class Racer
     public static final double PLAYER_SPEED = 5;
     public static final int ROAD_SEGMENT_WIDTH = 160;
     public static final int ROAD_SEGMENT_HEIGHT= 10;
-    public static final int ROAD_CURVE_SPEED = 5;
-    public static final int SCREEN_WIDTH = 800;
-    public static final int SCREEN_HEIGHT = 600;
+    public static final int ROAD_CURVE_SPEED = 7;
+    public static final int SCREEN_WIDTH = 1200;
+    public static final int SCREEN_HEIGHT = 900;
 
     private GameArena arena;
     private Car player;
@@ -46,7 +46,6 @@ public class Racer
     private double speed = 1.0;
     private boolean playing = false;
     private int score = 0;
-
     /**
      * Creates a new instance of the Racer racing game.
      */

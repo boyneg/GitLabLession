@@ -7,6 +7,21 @@ public class RacerStart extends JFrame
   // Declare objects
   public static void main(String[] args)
   {
+      interfaceSetup();     
+  }
+
+  public static void interfaceSetup()
+  {
+      int startCordX = ((Racer.SCREEN_WIDTH / 2) / 2);
+      int stopCordX = startCordX + (Racer.SCREEN_WIDTH / 2);
+      int startCordY = Racer.SCREEN_HEIGHT - 82;
+      int stopCordY = Racer.SCREEN_HEIGHT - 82;
+
+      System.out.println(startCordX);
+      System.out.println(startCordY);
+      System.out.println(stopCordX);
+      System.out.println(stopCordY);
+
       JFrame window = new JFrame();
       Racer r = new Racer();
 
@@ -16,22 +31,13 @@ public class RacerStart extends JFrame
       window.setVisible(true);
       window.setLayout(null);
 
-      r.start();
-
-      while(r.isPlaying())
-          r.update();
-
-    }
-  }
-
-/*
       JButton stop = new JButton("STOP");
       JButton start = new JButton("START");
-      JLabel scoreDisplay = new JLabel();
+      JLabel scoreDisplay = new JLabel("0000");
 
-      scoreDisplay.setXPosition(11);
-      scoreDisplay.setYPosition(11);
-      scoreDisplay.setBounds(12)
+      scoreDisplay.setBounds(12, 12, 30, 10);
+      stop.setBounds(stopCordX, stopCordY, 120, 30);
+      start.setBounds(startCordX, startCordY, 120, 30);
 
       window.add(stop);
       window.add(start);
@@ -48,9 +54,8 @@ public class RacerStart extends JFrame
           r.update();
   }
 
-
 }
-
+/*
 import java.awt.Color;
 
 import javax.swing.*;
