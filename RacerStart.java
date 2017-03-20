@@ -5,7 +5,8 @@ import javax.swing.*;
 import java.awt.event.*;
 public class RacerStart extends JFrame
 {
-  public static boolean gameBreak = false;
+  public static boolean gameFreaky = false;
+  public static boolean buttonState = false;
   public static void main(String[] args)
   {
       interfaceSetup();     
@@ -17,10 +18,8 @@ public class RacerStart extends JFrame
       int stopCordX = startCordX;
       int stopCordY = Racer.SCREEN_HEIGHT - 81;
       int startCordY = stopCordY - 34;
-      int breakCordX = Racer.SCREEN_WIDTH - 142;
-      int fixCordX = breakCordX;
-      int breakCordY = stopCordY;
-      int fixCordY = startCordY;
+      int freakyCordX = Racer.SCREEN_WIDTH - 142;
+      int freakyCordY = stopCordY;
 
       JFrame window = new JFrame();
       Racer r = new Racer();
@@ -33,20 +32,17 @@ public class RacerStart extends JFrame
 
       JButton butStop = new JButton("STOP");
       JButton butStart = new JButton("START");
-      JButton butFix = new JButton("FIX");
-      JButton butBreak = new JButton("BREAK");
+      JButton butFreaky = new JButton("FREAKY");
       JLabel lblScoreDisplay = new JLabel("0000");
 
       lblScoreDisplay.setBounds(12, 12, 30, 10);
       butStop.setBounds(stopCordX, stopCordY, 120, 30);
       butStart.setBounds(startCordX, startCordY, 120, 30);
-      butFix.setBounds(fixCordX, fixCordY, 120, 30);
-      butBreak.setBounds(breakCordX, breakCordY, 120, 30);
+      butFreaky.setBounds(freakyCordX, freakyCordY, 120, 30);
 
       window.add(butStop);
       window.add(butStart);
-      window.add(butFix);
-      window.add(butBreak);
+      window.add(butFreaky);
       window.add(lblScoreDisplay);
       window.setTitle("Totally not a racing game");
       window.setSize(Racer.SCREEN_WIDTH, Racer.SCREEN_HEIGHT);
@@ -55,12 +51,21 @@ public class RacerStart extends JFrame
       window.setLayout(null);
       window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-      butFix.addActionListener(e -> {
-          gameBreak = false;
-      });
 
-      butBreak.addActionListener(e -> {
-          gameBreak = true;
+
+      butFreaky.addActionListener(e -> {
+          if(buttonState == false) // button looks normal
+          {
+              gameFreaky = true;
+              butFreaky.setBorder(BorderFactory.createLoweredBevelBorder());
+              buttonState = true;
+          }
+          else // button looks pressed
+          {
+              gameFreaky = false;
+              butFreaky.setBorder(null);
+              buttonState = false;
+          }
       });
 
       butStart.addActionListener(e -> {
@@ -68,7 +73,7 @@ public class RacerStart extends JFrame
       });
 
       butStop.addActionListener(e -> {
-          r.stop();
+          
       });
 
       r.start();

@@ -46,9 +46,17 @@ public class Racer
     private RoadSegment[] road = new RoadSegment[SCREEN_HEIGHT / ROAD_SEGMENT_HEIGHT + 1];
 
     private double currentRoadX = SCREEN_WIDTH/2;
-    private double speed = 5.0;
+    private double speed = 5;
     private boolean playing = false;
     private int score = 0;
+
+    public static double randomMovement;
+    private static int frameCount;
+    private static int moveStage;
+    private static int frameFreakyCount;
+    private static int freakyChance;
+    private static boolean immune = true;
+    private static int immuneTime = 300; //Immune to death for 5 seconds on game start
     /**
      * Creates a new instance of the Racer racing game.
      */
@@ -132,6 +140,26 @@ public class Racer
     {
         if(playing)
         {
+
+            /*
+             * Special feature activates
+             */
+            if(RacerStart.gameFreaky == true)
+            {
+                randomMovement();
+            }
+            /*
+             * Temporary Immunity on game start
+             */
+            if(immuneTime >= 1)
+            {
+                immuneTime --;
+                if(immuneTime <= 0)
+                {
+                    immune = false;
+                }
+            }
+
             score++;
 
             double speed = 0;
@@ -159,7 +187,34 @@ public class Racer
 
         arena.pause();
     }
-
+    /*
+     * Controls the movement of the rectangles
+     */
+    public void randomMovement()
+    {
+        frameCount += 1;
+        if(frameCount > 30 && moveStage == 0) // Increase random movement
+        {
+            frameCount = 0;
+            randomMovement += 0.1;
+            if(randomMovement > 1.3)
+            {
+                moveStage = 1;
+            }
+        }
+        else if(frameCount > 30 && moveStage == 1) // Decrease random movement
+        {
+            frameCount = 0;
+            randomMovement -= 0.1;
+            if(randomMovement < 0.1)
+            {
+                moveStage = 0;
+            }
+        }
+    }
+    /*
+     * Sound to be played when the player crashes
+     */
     public void playSoundCrash()
     {
         try
@@ -213,7 +268,7 @@ public class Racer
      */
     private boolean hasCrashed()
     {
-        if(RacerStart.gameBreak == false)
+        if(immune == false)
         {
             for (int i=0; i<road.length; i++)
             {

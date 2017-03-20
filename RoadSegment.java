@@ -19,7 +19,6 @@ public class RoadSegment
 
     private double xSpeed;
     private double ySpeed;
-
     /**
      * Creates a new RoadSegment, at the given location and size.
      *
@@ -122,7 +121,6 @@ public class RoadSegment
     {
         xSpeed = s;
     }
-
     /**
      * Sets the speed of this RoadSegment in the Y axis - i.e. the number of pixels it moves in the Y axis every time move() is called.
      *
@@ -139,20 +137,21 @@ public class RoadSegment
      */
     public void move()
     {
-        if(RacerStart.gameBreak == true)
+        if(RacerStart.gameFreaky == true)
         {
             Random randroad = new Random();
-            int randSeg = randroad.nextInt(2) + 1;
             int randDirection = randroad.nextInt(2) + 1;
+
+            
 
             if(randDirection > 1)
             {
-                this.setXPosition(xPosition + xSpeed + randSeg);
+                this.setXPosition(xPosition + xSpeed + Racer.randomMovement);
                 this.setYPosition(yPosition + ySpeed);
             }
             else
             {
-                this.setXPosition(xPosition + xSpeed - randSeg);
+                this.setXPosition(xPosition + xSpeed - Racer.randomMovement);
                 this.setYPosition(yPosition + ySpeed);
             }
         }

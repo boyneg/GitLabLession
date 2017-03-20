@@ -89,7 +89,7 @@ public class GameArena
 	/**
      * Constructor. Creates an instance of the GameArena class, and displays a window on the
      * screen upon which shapes can be drawn.
-     *
+     *1
      * @param width The width of the window, in pixels.
      * @param height The height of the window, in pixels.
      * @param createWindow Determines if a JFrame containing the GameArena should be created (true) or not (false).
