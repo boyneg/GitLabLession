@@ -117,6 +117,7 @@ public class Racer
             playing = false;
             arena.exit();
             playSoundCrash();
+            LeaderBoard.boardSetup();
         }
     }
 

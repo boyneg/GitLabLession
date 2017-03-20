@@ -30,6 +30,7 @@ public class RacerStart extends JFrame
       window.setContentPane(r.getPanel());
       window.setVisible(true);
       window.setLayout(null);
+       window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
       JButton butStop = new JButton("STOP");
       JButton butStart = new JButton("START");
@@ -45,12 +46,6 @@ public class RacerStart extends JFrame
       window.add(butStart);
       window.add(butFreaky);
       window.add(lblScoreDisplay);
-      window.setTitle("Totally not a racing game");
-      window.setSize(Racer.SCREEN_WIDTH, Racer.SCREEN_HEIGHT);
-      window.setContentPane(r.getPanel());
-      window.setVisible(true);
-      window.setLayout(null);
-      window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
       butFreaky.addActionListener(e -> {
           if(buttonState == false) // button looks normal
