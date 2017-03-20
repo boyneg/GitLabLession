@@ -1,7 +1,5 @@
 import javax.swing.*;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
+
 /**
  * uses the GameArena APIs to implement a simple top down racing game.
  *
@@ -55,8 +53,7 @@ public class Racer
     private static int moveStage;
     private static int frameFreakyCount;
     private static int freakyChance;
-    private static boolean immune = true;
-    private static int immuneTime = 300; //Immune to death for 5 seconds on game start
+    
     /**
      * Creates a new instance of the Racer racing game.
      */
@@ -96,6 +93,8 @@ public class Racer
             player = new Car(SCREEN_WIDTH/2, SCREEN_HEIGHT - 150, arena);
 
             // Create the initial road layout
+            currentRoadX = SCREEN_WIDTH/2;
+
             for (int s = road.length-1; s >= 0 ; s--)
             {
                 road[s] = nextRoadSegment();
@@ -116,8 +115,6 @@ public class Racer
         {
             playing = false;
             arena.exit();
-            playSoundCrash();
-            LeaderBoard.boardSetup();
         }
     }
 
@@ -150,17 +147,6 @@ public class Racer
                 randomMovement();
                 needMoreColour();
             }
-            /*
-             * Temporary Immunity on game start
-             */
-            if(immuneTime >= 1)
-            {
-                immuneTime --;
-                if(immuneTime <= 0)
-                {
-                    immune = false;
-                }
-            }
 
             score++;
 
@@ -182,9 +168,6 @@ public class Racer
 
             // Recycle any segments that have crolled off screen...
             recycleRoadSegments();
-
-            if (hasCrashed())
-                stop();
         }
 
         arena.pause();
@@ -212,23 +195,6 @@ public class Racer
             {
                 moveStage = 0;
             }
-        }
-    }
-    /*
-     * Sound to be played when the player crashes
-     */
-    public void playSoundCrash()
-    {
-        try
-        {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("boo.wav"));
-            Clip mp3Clip = AudioSystem.getClip();
-            mp3Clip.open(audioInputStream);
-            mp3Clip.start();
-        }
-        catch(Exception e)
-        {
-            System.out.println("ERROR" + e);
         }
     }
 
@@ -268,18 +234,14 @@ public class Racer
      *
      * @return true is the player is touching the kerb/grass, false otherwise.
      */
-    private boolean hasCrashed()
+    public boolean hasCrashed()
     {
-        if(immune == false)
+        for (int i=0; i<road.length; i++)
         {
-            for (int i=0; i<road.length; i++)
-            {
-                if (player.isTouching(road[i]))
-                return true;
-            }
-
-            return false;
+            if (player.isTouching(road[i]))
+            return true;
         }
+
         return false;
     }
 

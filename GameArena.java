@@ -180,6 +180,11 @@ public class GameArena
 	public void exit()
 	{
 		this.exiting = true;
+
+        up = false;
+        down = false;
+        left = false;
+        right = false;
 	}
 
 	/**
