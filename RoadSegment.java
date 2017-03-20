@@ -139,24 +139,28 @@ public class RoadSegment
      */
     public void move()
     {
-        /*
-        Random randroad = new Random();
-        int randSeg = randroad.nextInt(2) + 1;
-        int randDirection = randroad.nextInt(2) + 1;
-
-        if(randDirection > 1)
+        if(RacerStart.gameBreak == true)
         {
-            this.setXPosition(xPosition + xSpeed + randSeg);
-            this.setYPosition(yPosition + ySpeed);
+            Random randroad = new Random();
+            int randSeg = randroad.nextInt(2) + 1;
+            int randDirection = randroad.nextInt(2) + 1;
+
+            if(randDirection > 1)
+            {
+                this.setXPosition(xPosition + xSpeed + randSeg);
+                this.setYPosition(yPosition + ySpeed);
+            }
+            else
+            {
+                this.setXPosition(xPosition + xSpeed - randSeg);
+                this.setYPosition(yPosition + ySpeed);
+            }
         }
         else
         {
-            this.setXPosition(xPosition + xSpeed - randSeg);
+            this.setXPosition(xPosition + xSpeed);
             this.setYPosition(yPosition + ySpeed);
         }
-        */
-        this.setXPosition(xPosition + xSpeed);
-        this.setYPosition(yPosition + ySpeed);
     }
 
     /**

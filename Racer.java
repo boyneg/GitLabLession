@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 /**
  * uses the GameArena APIs to implement a simple top down racing game.
  *
@@ -43,7 +46,7 @@ public class Racer
     private RoadSegment[] road = new RoadSegment[SCREEN_HEIGHT / ROAD_SEGMENT_HEIGHT + 1];
 
     private double currentRoadX = SCREEN_WIDTH/2;
-    private double speed = 1.0;
+    private double speed = 5.0;
     private boolean playing = false;
     private int score = 0;
     /**
@@ -105,6 +108,7 @@ public class Racer
         {
             playing = false;
             arena.exit();
+            playSoundCrash();
         }
     }
 
@@ -156,6 +160,21 @@ public class Racer
         arena.pause();
     }
 
+    public void playSoundCrash()
+    {
+        try
+        {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.getClass().getResource("boo.wav"));
+            Clip mp3Clip = AudioSystem.getClip();
+            mp3Clip.open(audioInputStream);
+            mp3Clip.start();
+        }
+        catch(Exception e)
+        {
+            System.out.println("ERROR" + e);
+        }
+    }
+
     /**
      * Provides a randomly generated, thin slice of road.
      * This method is used periodically to create new road on the screen in front of the player's car.
@@ -194,12 +213,16 @@ public class Racer
      */
     private boolean hasCrashed()
     {
-        for (int i=0; i<road.length; i++)
+        if(RacerStart.gameBreak == false)
         {
-            if (player.isTouching(road[i]))
+            for (int i=0; i<road.length; i++)
+            {
+                if (player.isTouching(road[i]))
                 return true;
-        }
+            }
 
+            return false;
+        }
         return false;
     }
 

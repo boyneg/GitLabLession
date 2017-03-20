@@ -136,26 +136,26 @@ public class GameArena
 
         EventHandler<KeyEvent> keyDownHandler = new EventHandler<KeyEvent>() {
             public void handle(final KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.UP) 
+                if (keyEvent.getCode() == KeyCode.W) 
                     up = true;
-                if (keyEvent.getCode() == KeyCode.DOWN) 
+                if (keyEvent.getCode() == KeyCode.S) 
                     down = true;
-                if (keyEvent.getCode() == KeyCode.LEFT) 
+                if (keyEvent.getCode() == KeyCode.A) 
                     left = true;
-                if (keyEvent.getCode() == KeyCode.RIGHT) 
+                if (keyEvent.getCode() == KeyCode.D) 
                     right = true;
             }
         };
 
         EventHandler<KeyEvent> keyUpHandler = new EventHandler<KeyEvent>() {
             public void handle(final KeyEvent keyEvent) {
-                if (keyEvent.getCode() == KeyCode.UP) 
+                if (keyEvent.getCode() == KeyCode.W) 
                     up = false;
-                if (keyEvent.getCode() == KeyCode.DOWN) 
+                if (keyEvent.getCode() == KeyCode.S) 
                     down = false;
-                if (keyEvent.getCode() == KeyCode.LEFT) 
+                if (keyEvent.getCode() == KeyCode.A) 
                     left = false;
-                if (keyEvent.getCode() == KeyCode.RIGHT) 
+                if (keyEvent.getCode() == KeyCode.D) 
                     right = false;
             }
         };
