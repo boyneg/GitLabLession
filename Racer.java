@@ -147,6 +147,7 @@ public class Racer
             if(RacerStart.gameFreaky == true)
             {
                 randomMovement();
+                needMoreColour();
             }
             /*
              * Temporary Immunity on game start
@@ -280,6 +281,46 @@ public class Racer
         }
         return false;
     }
+
+    /**
+     * Randomises colour like an LSD effect
+     */
+    public static void needMoreColour()
+    {
+        String[] colour = new String[25];
+
+        colour[0] = "#ff0000";
+        colour[1] = "#ff2e00";
+        colour[2] = "#ff5400";
+        colour[3] = "#ffc300";
+        colour[4] = "#ffee00";
+        colour[5] = "#99ff00";
+        colour[6] = "#4cff00";
+        colour[7] = "#00ff37";
+        colour[8] = "#00ffa1";
+        colour[9] = "#00f2ff";
+        colour[10] = "#00c7ff";
+        colour[11] = "#00a1ff";
+        colour[12] = "#006eff";
+        colour[13] = "#0055ff";
+        colour[14] = "#0015ff";
+        colour[15] = "#1d00ff";
+        colour[16] = "#5d00ff";
+        colour[17] = "#cb00ff";
+        colour[18] = "#ff00fa";
+        colour[19] = "#ff00c7";
+        colour[20] = "#ff009d";
+        colour[21] = "#ff004c";
+        colour[22] = "#00ff55";
+        colour[23] = "#00ff83";
+        colour[24] = "#00ff19";
+
+        int roughColour = (int)Math.floor(Math.random() * 25);
+        int kerbColour = (int)Math.floor(Math.random() * 25);
+
+        RoadSegment.ROUGH_COLOUR = colour[roughColour];
+        RoadSegment.KERB_COLOUR = colour[kerbColour];
+  }
 
     /**
      * A simple example of usage

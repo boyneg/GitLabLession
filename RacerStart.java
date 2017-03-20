@@ -7,6 +7,7 @@ public class RacerStart extends JFrame
 {
   public static boolean gameFreaky = false;
   public static boolean buttonState = false;
+  public static int randomColour = 0;
   public static void main(String[] args)
   {
       interfaceSetup();     
@@ -51,8 +52,6 @@ public class RacerStart extends JFrame
       window.setLayout(null);
       window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-
-
       butFreaky.addActionListener(e -> {
           if(buttonState == false) // button looks normal
           {
@@ -73,7 +72,7 @@ public class RacerStart extends JFrame
       });
 
       butStop.addActionListener(e -> {
-          
+          //Racer.stop();
       });
 
       r.start();
