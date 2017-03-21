@@ -53,6 +53,9 @@ public class Racer
     private static int moveStage;
     private static int frameFreakyCount;
     private static int freakyChance;
+    public boolean tempImmunity = true;
+    public int tempImmunityTimer = 180;
+
     
     /**
      * Creates a new instance of the Racer racing game.
@@ -89,6 +92,8 @@ public class Racer
     {
         if(!playing)
         {
+            tempImmunityTimer = 180;
+            tempImmunity = true;
             // Create the player's car
             player = new Car(SCREEN_WIDTH/2, SCREEN_HEIGHT - 150, arena);
 
@@ -148,7 +153,19 @@ public class Racer
                 needMoreColour();
             }
 
-            score++;
+            if(tempImmunity == false)
+            {
+                score++;
+            }
+
+            if(tempImmunityTimer > 0)
+            {
+                tempImmunityTimer --;
+                if(tempImmunityTimer <= 0)
+                {
+                    tempImmunity = false;
+                }
+            }
 
             double speed = 0;
             if (arena.leftPressed())
@@ -238,8 +255,11 @@ public class Racer
     {
         for (int i=0; i<road.length; i++)
         {
-            if (player.isTouching(road[i]))
-            return true;
+            if(tempImmunity == false)
+            {
+                if (player.isTouching(road[i]))
+                return true;
+            } 
         }
 
         return false;

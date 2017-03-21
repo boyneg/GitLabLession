@@ -11,7 +11,6 @@ public class RacerStart extends JFrame
 {
     public static boolean gameFreaky = false;
     public static boolean buttonState = false;
-    public static int randomColour = 0;
 
     private boolean gameInProgress;
 
@@ -21,7 +20,7 @@ public class RacerStart extends JFrame
     }
 
     /*
-     * Sound to be played when the player crashes
+     * Sound that is played only when the user crashes their car
      */
     public void playSoundCrash()
     {
@@ -37,7 +36,9 @@ public class RacerStart extends JFrame
             System.out.println("ERROR" + e);
         }
     }
-
+    /*
+     * Creates the interface for the game
+     */
     public RacerStart()
     {
         int startCordX = 4;
@@ -74,6 +75,10 @@ public class RacerStart extends JFrame
         window.add(butFreaky);
         window.add(lblScoreDisplay);
 
+        /*
+         * Action listeners for buttons
+         */
+
         butFreaky.addActionListener(e -> {
             if(buttonState == false) // button looks normal
             {
@@ -89,6 +94,8 @@ public class RacerStart extends JFrame
             }
         });
 
+
+        // Start and stop buttons
         butStart.addActionListener(e -> {
             r.start();
         });
@@ -116,7 +123,7 @@ public class RacerStart extends JFrame
             {
                 gameInProgress = true;
             }
-                  
+            // Update the score as the game progresses 
             lblScoreDisplay.setText(Integer.toString(r.getScore()));
             LeaderBoard.newScore = Integer.parseInt (lblScoreDisplay.getText());
             r.update();
